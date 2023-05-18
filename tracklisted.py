@@ -8,6 +8,7 @@ DISCOGS_TRACK_TITLE = re.compile('^trackTitle')
 DISCOGS_DURATION = re.compile('^duration')
 DISCOGS_CREDITS = re.compile('^trackCredits')
 DISCOGS_LINK = re.compile('^link')
+DISCOGS_FEATURING = 'Featuring'
 SECS_PER_MIN = 60
 
 @dataclass
@@ -48,14 +49,19 @@ def get_tracks_from_discogs(html: str):
         else:
             duration = ''
 
-        credits_divs = row.find_all('div', {'class': DISCOGS_CREDITS})
-        if credits_divs:
-            credits_links = credits_divs[0].find_all('a', {'class': DISCOGS_LINK})
-            credits = [link.text for link in credits_links]
+        credits = row.find_all('div', {'class': DISCOGS_CREDITS})
+        if credits:
+            credits_divs = credits[0].find_all('div')
+            features_divs = [div for div in credits_divs if DISCOGS_FEATURING in str(div)]
+            if features_divs:
+                features_links = features_divs[0].find_all('a', {'class': DISCOGS_LINK})
+                features = [link.text for link in features_links]
+            else:
+                features = []
         else:
-            credits = []
+            features = []
 
-        track = Track(title, duration, credits)
+        track = Track(title, duration, features)
         tracks.append(track)
     
     return tracks
