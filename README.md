@@ -74,4 +74,5 @@ The expected output is:
 | title24 = The Box Frame (Original Mix) (Halcyon)
 | length24 = 8:22
 | total_length = 181:59
-}}```
+}}
+```
