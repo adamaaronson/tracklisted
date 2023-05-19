@@ -78,3 +78,7 @@ The output is:
 | total_length = 181:59
 }}
 ```
+
+Which looks like this on Wikipedia:
+
+![Track listing of *Spaces and Places* by Kerri Chandler](example.png)
