@@ -1,6 +1,6 @@
 # Tracklisted 💿
 
-Tracklisted is a command line tool that scrapes a Discogs album link and automatically generates a Wikipedia [Track listing](https://en.wikipedia.org/wiki/Template:Track_listing) template.
+Tracklisted is a Python-based command line tool that scrapes a Discogs album link and automatically generates a Wikipedia [Track listing](https://en.wikipedia.org/wiki/Template:Track_listing) template.
 
 Note that Discogs is user-generated and is [not considered a reliable source](https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources/Perennial_sources#Discogs), so the information should be cross-referenced with other sources. However, this can be a good starting point for creating a Wikipedia track listing.
 
