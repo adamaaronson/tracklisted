@@ -9,6 +9,7 @@ DISCOGS_DURATION = re.compile('^duration')
 DISCOGS_CREDITS = re.compile('^trackCredits')
 DISCOGS_LINK = re.compile('^link')
 DISCOGS_FEATURING = 'Featuring'
+
 SECS_PER_MIN = 60
 
 @dataclass
