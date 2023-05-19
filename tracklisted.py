@@ -66,9 +66,6 @@ def get_tracks_from_discogs(html: str):
     
     return tracks
 
-def get_tracks_from_spotify(html: str):
-    soup = BeautifulSoup(html, 'html.parser')
-
 def get_total_duration(tracks: list[Track]):
     durations = [track.duration for track in tracks]
     durations = [duration.split(':') for duration in durations]
@@ -108,7 +105,8 @@ def get_wikipedia_track_listing_template(tracks: list[Track]):
     return template
 
 def main():
-    html = read_html(sys.argv[1])
+    url = sys.argv[1]
+    html = read_html(url)
     track_listing = get_tracks_from_discogs(html)
     template = get_wikipedia_track_listing_template(track_listing)
     print(template)
