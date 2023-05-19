@@ -12,17 +12,20 @@ DISCOGS_FEATURING = 'Featuring'
 
 SECS_PER_MIN = 60
 
+
 @dataclass
 class Track:
     title: str
     duration: str
     features: list[str]
 
+
 def read_html(url: str):
     f = urllib.request.urlopen(url)
     html = f.read().decode('utf-8')
     f.close()
     return html
+
 
 def get_tracks_from_discogs(html: str):
     soup = BeautifulSoup(html, 'html.parser')
@@ -67,6 +70,7 @@ def get_tracks_from_discogs(html: str):
     
     return tracks
 
+
 def get_total_duration(tracks: list[Track]):
     durations = [track.duration for track in tracks]
     durations = [duration.split(':') for duration in durations]
@@ -79,11 +83,13 @@ def get_total_duration(tracks: list[Track]):
 
     return f'{total_mins:02d}:{total_secs:02d}'
 
+
 def list_to_english(items: list):
     if len(items) < 3:
         return ' and '.join(items)
     else:
         return ', '.join(items[:-1]) + ', and ' + items[-1]
+
 
 def get_wikipedia_track_listing_template(tracks: list[Track]):
     template = '{{Track listing\n'
@@ -105,12 +111,14 @@ def get_wikipedia_track_listing_template(tracks: list[Track]):
 
     return template
 
+
 def main():
     url = sys.argv[1]
     html = read_html(url)
     track_listing = get_tracks_from_discogs(html)
     template = get_wikipedia_track_listing_template(track_listing)
     print(template)
+
 
 if __name__ == '__main__':
     main()
